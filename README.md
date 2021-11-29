@@ -41,3 +41,8 @@ docker port 3707ee81ff3d 7001
 http://127.0.0.1:7001/console
 
 - 用户名和密码：weblogic/weblogic123
+
+# 你还可以直接运行
+```bash
+docker run -d -p 7001:7001 hktalent/weblogic:14.1.1 
+```
