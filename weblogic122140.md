@@ -62,8 +62,11 @@ docker rmi weblogic122140
 docker port d99554f052ed 7001
 
 
-docker run --rm -p 7001:7001 hktalent/weblogic:14.1.1 
-docker push hktalent/weblogic:14.1.1
+docker run --rm -p 7001:7001 hktalent/weblogic:12.2.1.4.0
+
+docker login
+docker push hktalent/weblogic:12.2.1.4.0
+docker image push hktalent/weblogic:12.2.1.4.0
 ```
 
 
