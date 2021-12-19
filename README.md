@@ -51,4 +51,5 @@ http://127.0.0.1:7001/console
 # 你还可以直接运行
 ```bash
 docker run -d -p 7001:7001 hktalent/weblogic:14.1.1 
+docker run --rm -p 7001:7001 hktalent/weblogic:12.2.1.4.0
 ```
