@@ -58,3 +58,7 @@ http://127.0.0.1:7001/console
 docker run -d -p 7001:7001 hktalent/weblogic:14.1.1 
 docker run --rm -p 7001:7001 hktalent/weblogic:12.2.1.4.0
 ```
+# How debug
+```bash
+docker run -d --name mywbl -e debugFlag=true -e DEBUG_PORT=9999 -p 9999:9999 -p 7001:7001 hktalent/weblogic:12.2.1.4.0
+```
