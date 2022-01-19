@@ -11,6 +11,7 @@ Coherence的主要用途是共享一个应用的对象(主要是java对象，比
 https://www.oracle.com/middleware/technologies/weblogic-server-installers-downloads.html
 https://www.oracle.com/webapps/redirect/signon?nexturl=https://download.oracle.com/otn/nt/middleware/14c/14110/fmw_14.1.1.0.0_wls_lite_Disk1_1of1.zip
 https://www.oracle.com/webapps/redirect/signon?nexturl=https://download.oracle.com/otn/nt/middleware/12c/122140/fmw_12.2.1.4.0_wls_lite_Disk1_1of1.zip
+https://download.oracle.com/otn/nt/middleware/11g/wls/1036/wls1036_generic.jar
 
 ### 我遇到了什么坑？
 macos安装X11的支持，否则docker图形界面无法显示，weblogic无法继续安装
